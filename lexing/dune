@@ -1,0 +1,9 @@
+(ocamllex lexer)
+
+(menhir
+ (flags (--unused-tokens))
+ (modules parser))
+
+(executable
+ (name test)
+ (libraries core yojson))
