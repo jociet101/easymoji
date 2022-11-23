@@ -4,76 +4,42 @@ exception SyntaxError of string
 }
 
 (* whitespace and comments *)
-let white = [' ' '\n' '\r' '\t']
+let white = ['\n' '\r' '\t']
 let oneLine = "//" [^'\n']*['\n']
 let multiLine = "/*" ([^'*']* | '*' [^'/'])* ['*']+ ['/']
 let comment = oneLine | multiLine
 
 (* identifiers *)
-let first = ['a'-'z' 'A'-'Z' '_' '$']
-let id = first ['a'-'z' 'A'-'Z' '_' '$' '0'-'9']*
+(* let first = ['a'-'z' 'A'-'Z']
+let id = first ['a'-'z' 'A'-'Z' '0'-'9']* *)
+let id = [^'\n']*
 
 (* numbers *)
-let decimal = ['0'-'9']*['.']?['0'-'9']*
-let scientific = ['e' 'E']['+' '-']?['0'-'9']+
-(* case to prevent non numbers from being pattern matched to number *)
-let num = ['0'-'9']*['.']?['0'-'9']+scientific | ['0'-'9']+['.']?['0'-'9']*scientific | decimal
+let num = ['0'-'9']*
 
 rule token = parse
   | white | comment { token lexbuf }
   | eof { EOF }
-
-  (* symbols *)
-  | '(' { LPAREN }
-  | ')' { RPAREN }
-  | '[' { LBRACKET }
-  | ']' { RBRACKET }
-  | '{' { LBRACE }
-  | '}' { RBRACE }
-  | '+' { PLUS }
-  | '-' { MINUS }
-  | '*' { TIMES }
-  | '/' { DIV }
-  | "===" { EQUALS }
-  | '<' { LESS }
-  | '>' { GREATER }
-  | "&&" { AND }
-  | "||" { OR }
-  | '!' { NOT }
-  | ',' { COMMA }
-  | ';' { SEMICOLON }
-  | '.' { DOT }
-  | "=>" { ARROW }
-  | ':' { COLON }
-  | '=' { ASSIGN }
-
-  (* keywords and types *)
-  | "any" { ANY }
-  | "as" { AS }
-  | "boolean" { BOOLEAN }
-  | "const" { CONST }
-  | "do" { DO }
-  | "else" { ELSE }
-  | "false" { FALSE }
-  | "for" { FOR }
-  | "function" { FUNCTION }
-  | "if" { IF }
-  | "import" { IMPORT }
-  | "in" { IN }
-  | "instanceof" { INSTANCEOF }
-  | "interface" { INTERFACE }
-  | "let" { LET }
-  | "number" { NUMBER }
-  | "return" { RETURN }
-  | "string" { STRING }
-  | "true" { TRUE }
-  | "void" { VOID }
-  | "while" { WHILE }
+  | "let" { parse_let lexbuf }
+  (* | "=>" { START } *)
+  (* | "#" { SPAM }
+  | "[" { LBRACK }
+  | "]" { RBRACK }
+  | "&" { CALL }
+  | ":" { EMOJI } *)
 
   (* identifiers, numbers, strings *)
   | id as c { ID (c) }
   | num as n { NUM (float_of_string n) }
-  | '"' { read_string (Buffer.create 10) lexbuf }
+  | ' ' { read_string (Buffer.create 10) lexbuf }
+
+and parse_let = parse
+  | ' ' { MACRO; parse_let lexbuf }
+  | id as c { ID (c); parse_macro lexbuf }
+
+and parse_macro = parse
+  | ' ' { SMILES; parse_macro lexbuf }
+  | id as c { ID (c) }
 
 (* Referenced Real World OCaml for read_string function *)
 and read_string buf = parse
