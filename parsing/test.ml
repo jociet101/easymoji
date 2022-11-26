@@ -17,7 +17,6 @@ let show_token tok = let open Parser in
     | STOP -> "STOP"
 
     | STR s -> sprintf "STR %s" ("\"" ^ s ^ "\"")
-    (* (Yojson.Basic.pretty_to_string (`String s)) *)
 
 let rec print_lex_all lexbuf = match Lexer.token lexbuf with
   | EOF -> ()
@@ -40,8 +39,8 @@ let () =
   let fname = (Sys.get_argv ()).(1) in
   let lexbuf = Lexing.from_string (In_channel.read_all fname) in
   Lexing.set_filename lexbuf fname ;
-  let () = print_endline "LEXING OUTPUT" in
+  (* let () = print_endline "LEXING OUTPUT" in
   let () = print_lex_all lexbuf in
-  let () = print_endline "==============================================" in
+  let () = print_endline "==============================================" in *)
   let result = parse_with_error lexbuf in
   print_endline (Syntax.show_prog result)

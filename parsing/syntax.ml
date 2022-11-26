@@ -25,7 +25,6 @@ and stmt =
   | TextDecl of text_decl
 [@@deriving show { with_path = false }]
 
-(* Literal *)
 and str =
   | Str of string
 [@@deriving show { with_path = false }]
