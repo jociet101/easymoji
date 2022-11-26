@@ -1,0 +1,19 @@
+* {
+font-family: Helvetica, Arial, sans-serif;
+}
+
+h1 {
+color: SeaGreen;
+}
+
+p, li {
+font-size: 18px;
+}
+
+a {
+text-decoration: none;
+}
+
+#user_input { 
+    height:200px; font-size:14pt; 
+}
