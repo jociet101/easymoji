@@ -10,7 +10,7 @@ let show_token tok = let open Parser in
     | RBRACK -> "]"
     | ASSIGN -> "ASSIGN"
     | START -> "START"
-    | NEXT -> "NEXT"
+    | STOP -> "STOP"
 
     | NUM _ -> sprintf "NUM"
     | STR s -> sprintf "STR %s" (Yojson.Basic.pretty_to_string (`String s))

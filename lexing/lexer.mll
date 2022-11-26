@@ -6,9 +6,8 @@ exception SyntaxError of string
 (* whitespace and comments *)
 let whitespace = [' ' '\t']
 let newline = "\n\n"
-let endline = "\r\n"
-let both_endline = newline | endline
-let single_line_comment = "//" [^'\n']* both_endline
+let endline = "\n" | "\r\n"
+let single_line_comment = "//" [^'\n']* endline
 
 (* identifiers *)
 let first = ['a'-'z' 'A'-'Z']
@@ -22,21 +21,22 @@ let num = ['0'-'9']*['.']?['0'-'9']+scientific | ['0'-'9']+['.']?['0'-'9']*scien
 
 rule token = parse
   | whitespace { token lexbuf }
-  | newline { NEXT }
-  | both_endline | single_line_comment { Lexing.new_line lexbuf; token lexbuf }
+  | endline | single_line_comment { Lexing.new_line lexbuf; token lexbuf }
   | "/*" { multiline_comment lexbuf; token lexbuf }
 
   | eof { EOF }
   | "let" { LET }
   | "=" { ASSIGN }
   | "=>" { START }
+  | ";" { STOP }
+  (* | newline { STOP } *)
 
   | id as c { ID (c) }
   | num as n { NUM (float_of_string n) }
   | '"' { string_literal (Buffer.create 10) lexbuf }
 
 and multiline_comment = parse
-  | both_endline { Lexing.new_line lexbuf; multiline_comment lexbuf }
+  | endline { Lexing.new_line lexbuf; multiline_comment lexbuf }
   | [^'*'] | ('*' [^'/']) { multiline_comment lexbuf }
   | '*'+ '/' { () }
   | eof { raise (SyntaxError ("Comment is not terminated")) }

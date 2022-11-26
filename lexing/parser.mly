@@ -1,6 +1,6 @@
 %token EOF
 
-%token LET ASSIGN START NEXT
+%token LET ASSIGN START STOP
 %token <string> ID
 %token LBRACK RBRACK
 
