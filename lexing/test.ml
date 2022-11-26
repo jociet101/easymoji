@@ -5,11 +5,12 @@ let show_token tok = let open Parser in
     | EOF -> "EOF"
     | ID x -> sprintf "ID %s" x
 
-    | LET -> "let"
+    | LET -> "LET"
     | LBRACK -> "["
     | RBRACK -> "]"
     | ASSIGN -> "ASSIGN"
     | START -> "START"
+    | NEXT -> "NEXT"
 
     | NUM _ -> sprintf "NUM"
     | STR s -> sprintf "STR %s" (Yojson.Basic.pretty_to_string (`String s))

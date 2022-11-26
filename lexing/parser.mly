@@ -1,9 +1,7 @@
 %token EOF
 
-%token LET ASSIGN START
-
+%token LET ASSIGN START NEXT
 %token <string> ID
-// %token SPAM 
 %token LBRACK RBRACK
 
 %token <float> NUM

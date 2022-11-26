@@ -5,9 +5,10 @@ exception SyntaxError of string
 
 (* whitespace and comments *)
 let whitespace = [' ' '\t']
-let terminator = ['\n' '\r']
-let endline = '\n' | "\r\n"
-let single_line_comment = "//" [^'\n']* endline
+let newline = "\n\n"
+let endline = "\r\n"
+let both_endline = newline | endline
+let single_line_comment = "//" [^'\n']* both_endline
 
 (* identifiers *)
 let first = ['a'-'z' 'A'-'Z']
@@ -21,7 +22,8 @@ let num = ['0'-'9']*['.']?['0'-'9']+scientific | ['0'-'9']+['.']?['0'-'9']*scien
 
 rule token = parse
   | whitespace { token lexbuf }
-  | endline | single_line_comment { Lexing.new_line lexbuf; token lexbuf }
+  | newline { NEXT }
+  | both_endline | single_line_comment { Lexing.new_line lexbuf; token lexbuf }
   | "/*" { multiline_comment lexbuf; token lexbuf }
 
   | eof { EOF }
@@ -34,7 +36,7 @@ rule token = parse
   | '"' { string_literal (Buffer.create 10) lexbuf }
 
 and multiline_comment = parse
-  | endline { Lexing.new_line lexbuf; multiline_comment lexbuf }
+  | both_endline { Lexing.new_line lexbuf; multiline_comment lexbuf }
   | [^'*'] | ('*' [^'/']) { multiline_comment lexbuf }
   | '*'+ '/' { () }
   | eof { raise (SyntaxError ("Comment is not terminated")) }
