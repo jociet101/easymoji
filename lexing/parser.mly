@@ -1,7 +1,8 @@
 %token EOF
-%token <string> ID
 
-%token MACRO SMILES
+%token LET ASSIGN START
+
+%token <string> ID
 // %token SPAM 
 %token LBRACK RBRACK
 
