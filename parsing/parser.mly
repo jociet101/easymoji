@@ -2,7 +2,7 @@
   open Syntax
 %}
 
-%token LET ASSIGN START STOP
+%token LET BE START STOP
 %token <string> ID
 %token <string> STR
 %token EOF
@@ -13,7 +13,7 @@ prog:
   | b = list(stmt) ; EOF { { body = b } }
   ;
 id:
-  | n = ID { { name = n } }
+  | n = ID { Id n }
   ;
 str:
   | s = STR { Str s }
@@ -23,7 +23,7 @@ stmt:
   | START ; b = text_decl ; STOP { TextDecl b }
   ;
 macro_decl:
-  | ID ; n = id ; ASSIGN ; s = str { { macro_id = n ; init = s } }
+  | n = id ; BE ; s = str { { macro_id = n ; init = s } }
   ;
 text_decl:
   | s = str { { words = s } }

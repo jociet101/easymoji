@@ -7,14 +7,8 @@
   type is meant to roughly correspond to the ESTree type of the same name.
 *)
 
-(* Identifier *)
-type id =
-  { name : string;
-  }
-[@@deriving show { with_path = false }]
-
 (* Program *)
-and prog =
+type prog =
   { body : stmt list;
   }
 [@@deriving show { with_path = false }]
@@ -23,6 +17,11 @@ and prog =
 and stmt =
   | MacroDecl of macro_decl
   | TextDecl of text_decl
+[@@deriving show { with_path = false }]
+
+(* Identifier *)
+and id =
+  | Id of string
 [@@deriving show { with_path = false }]
 
 and str =

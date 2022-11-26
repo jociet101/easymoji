@@ -20,7 +20,7 @@ rule token = parse
 
   | eof { EOF }
   | "let" { LET }
-  | "=" { ASSIGN }
+  | "be" { BE }
   | "=>" { START }
   | ";" { STOP }
 

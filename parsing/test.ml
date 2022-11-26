@@ -12,7 +12,7 @@ let show_token tok = let open Parser in
     | ID x -> sprintf "ID %s" x
 
     | LET -> "LET"
-    | ASSIGN -> "ASSIGN"
+    | BE -> "BE"
     | START -> "START"
     | STOP -> "STOP"
 
