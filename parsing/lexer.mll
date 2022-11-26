@@ -3,75 +3,36 @@ open Parser
 exception SyntaxError of string
 }
 
+(* whitespace and comments *)
 let whitespace = [' ' '\t']
-let terminator = ['\n' '\r']
-let endline = '\n' | "\r\n"
+let newline = "\n\n"
+let endline = "\n" | "\r\n"
 let single_line_comment = "//" [^'\n']* endline
 
-let letter = ['$' '_' 'a'-'z' 'A'-'Z']
+(* identifiers *)
+let first = ['a'-'z' 'A'-'Z']
+let id = first ['a'-'z' 'A'-'Z' '0'-'9']*
 
-let digit = ['0'-'9']
-let frac = '.' digit*
-let exp = ['e' 'E'] ['-' '+']? digit+
-let float = (digit+ frac? exp?) | ('.' digit+ exp?)
+(* numbers *)
+(* let decimal = ['0'-'9']*['.']?['0'-'9']*
+let scientific = ['e' 'E']['+' '-']?['0'-'9']+
+(* case to prevent non numbers from being pattern matched to number *)
+let num = ['0'-'9']*['.']?['0'-'9']+scientific | ['0'-'9']+['.']?['0'-'9']*scientific | decimal *)
 
 rule token = parse
   | whitespace { token lexbuf }
   | endline | single_line_comment { Lexing.new_line lexbuf; token lexbuf }
   | "/*" { multiline_comment lexbuf; token lexbuf }
 
-  (* symbols *)
-  | '(' { LPAREN }
-  | ')' { RPAREN }
-  (* | '[' { LBRACKET } *)
-  (* | ']' { RBRACKET } *)
-  | '{' { LBRACE }
-  | '}' { RBRACE }
-  | '+' { PLUS }
-  | '-' { MINUS }
-  | '*' { TIMES }
-  | '/' { DIV }
-  | "===" { EQUALS }
-  | '>' { GREATER }
-  | '<' { LESS }
-  | "&&" { AND }
-  | "||" { OR }
-  | '!' { NOT }
-  | ',' { COMMA }
-  | ';' { SEMICOLON }
-  | '.' { DOT }
-  | "=>" { ARROW }
-  | ':' { COLON }
-  | '=' { ASSIGN }
-
-  (* types *)
-  (* | "any" { ANY } *)
-  | "number" { NUMBER }
-  | "boolean" { BOOLEAN }
-  | "string" { STRING }
-  | "void" { VOID }
-
-  (* keywords *)
-  | "function" { FUNCTION }
-  | "interface" { INTERFACE }
-  | "let" { LET }
-  | "const" { CONST }
-  | "do" { DO }
-  | "else" { ELSE }
-  | "false" { FALSE }
-  (* | "for" { FOR } *)
-  | "if" { IF }
-  (* | "instanceof" { INSTANCEOF } *)
-  | "return" { RETURN }
-  | "true" { TRUE }
-  | "while" { WHILE }
-  (* | "in" { IN } *)
-
-  | letter (letter | digit)* as x { ID x }
-  | float as n { NUM (float_of_string n) }
-  | '"' { string_literal (Buffer.create 17) lexbuf }
-
   | eof { EOF }
+  | "let" { LET }
+  | "=" { ASSIGN }
+  | "=>" { START }
+  | ";" { STOP }
+
+  | id as c { ID (c) }
+  (* | num as n { NUM (float_of_string n) } *)
+  | '"' { string_literal (Buffer.create 10) lexbuf }
 
 and multiline_comment = parse
   | endline { Lexing.new_line lexbuf; multiline_comment lexbuf }
