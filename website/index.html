@@ -2,16 +2,43 @@
 <html>
 <head>
   <title>Easymoji</title>
-  <link href="./resources/css/index.css" type="text/css" rel="stylesheet">
+  
+  <!-- CodeMirror -->
+  <script src="codemirror\codemirror-5.65.10/lib/codemirror.js"></script>
+  <link rel="stylesheet" href="codemirror\codemirror-5.65.10/lib/codemirror.css">
+  <!-- Can eventually change for the syntax to work with our own code -->
+  <script src="codemirror\codemirror-5.65.10/mode/javascript/javascript.js"></script>
+  
+  <!-- Code Imports -->
+  <script type="text/javascript" src="resources/app.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="resources/index.css">
 </head>
 <body>
     <h1>Easymoji</h1>
-    <p>I'm learning to code on Codecademy! My goals include:</p>
+    <p>We use emojis teehee</p>
     <ul>
-      <li>Learn to code</li>
-      <li>Start a company</li>
-      <li>Help the world</li>
+      <li>Instruction 1</li>
+      <li>Instruction 2</li>
+      <li>Instruction 3</li>
     </ul>
-    <p>Here is our website: <a href="https://jociet101.github.io/Easymoji/" target="_blank">CLICK ME</a></p>
+    <div class="grid-container">
+        <div class="code-area">
+            <div class="code-area-header">
+                <h1>Editor</h1>
+                <button>Run</button>
+            </div>
+            <textarea class ="codemirror-textarea"></textarea>
+        </div>
+
+        <div class="code-area">
+            <div class="code-area-header">
+                <h1>Shell</h1>
+                <button>Clear</button>
+            </div>
+            <textarea class ="codemirror-textarea"></textarea>
+        </div>
+    </div>
 </body>
 </html>
