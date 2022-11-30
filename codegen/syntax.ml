@@ -38,3 +38,10 @@ and text_decl =
   { words : str;
   }
 [@@deriving show { with_path = false }]
+
+type python = [
+  (* | `List of python list *)
+  | `Var of string * string
+  | `Print of string
+]
+[@@deriving show { with_path = false }]
