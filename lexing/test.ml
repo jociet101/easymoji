@@ -8,7 +8,7 @@ let show_token tok = let open Parser in
     | LET -> "LET"
     | LBRACK -> "["
     | RBRACK -> "]"
-    | ASSIGN -> "ASSIGN"
+    | BE -> "BE"
     | START -> "START"
     | STOP -> "STOP"
 

@@ -13,12 +13,6 @@ let single_line_comment = "//" [^'\n']* endline
 let first = ['a'-'z' 'A'-'Z']
 let id = first ['a'-'z' 'A'-'Z' '0'-'9']*
 
-(* numbers *)
-let decimal = ['0'-'9']*['.']?['0'-'9']*
-let scientific = ['e' 'E']['+' '-']?['0'-'9']+
-(* case to prevent non numbers from being pattern matched to number *)
-let num = ['0'-'9']*['.']?['0'-'9']+scientific | ['0'-'9']+['.']?['0'-'9']*scientific | decimal
-
 rule token = parse
   | whitespace { token lexbuf }
   | endline | single_line_comment { Lexing.new_line lexbuf; token lexbuf }
@@ -26,13 +20,11 @@ rule token = parse
 
   | eof { EOF }
   | "let" { LET }
-  | "=" { ASSIGN }
+  | "be" { BE }
   | "=>" { START }
   | ";" { STOP }
-  (* | newline { STOP } *)
 
   | id as c { ID (c) }
-  | num as n { NUM (float_of_string n) }
   | '"' { string_literal (Buffer.create 10) lexbuf }
 
 and multiline_comment = parse
