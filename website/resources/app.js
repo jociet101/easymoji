@@ -2,9 +2,14 @@
 // import { saveInputToFile } from './app2.js';
 
 async function execCommand() {
-    const req = await fetch("/resources/execute");
-    const data = await req.json();
-    console.log(data);
+    // const req = await fetch("/resources/execute");
+    // const data = await req.json();
+    // console.log(data);
+    var fs = require('fs');
+    fs.rename('user_input.txt', 'user_input1.txt', function (err) {
+        if (err) throw err;
+        console.log('File Renamed!');
+    });
 }
 
 window.onload = () => {
