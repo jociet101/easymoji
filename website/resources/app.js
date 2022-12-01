@@ -1,6 +1,12 @@
 // https://www.youtube.com/watch?v=C3fNuqQeUdY
 // import { saveInputToFile } from './app2.js';
 
+async function execCommand() {
+    const req = await fetch("execute");
+    const data = await req.json();
+    console.log(data);
+}
+
 window.onload = () => {
     const [input,output] = document.querySelectorAll(".codemirror-textarea");
     const [run, clear] = document.querySelectorAll("button");
@@ -12,7 +18,7 @@ window.onload = () => {
     run.addEventListener("click", () => {
         const codeToRun = editor.getValue();
         shell.replaceRange("=> "+codeToRun+"\n", CodeMirror.Pos(shell.lastLine()));
-        test();
+        execCommand();
         // try{
         //     // saveInputToFile(codeToRun);
         //     shell.replaceRange("=> "+eval(codeToRun)+"\n", CodeMirror.Pos(shell.lastLine()));
@@ -21,9 +27,4 @@ window.onload = () => {
         // }
     });
     clear.addEventListener("click", _ => shell.setValue(""));
-}
-
-function test() {
-    var url = document.URL
-    url.searchParams.append('run', true);
 }
