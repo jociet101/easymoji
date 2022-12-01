@@ -2,7 +2,7 @@
 // import { saveInputToFile } from './app2.js';
 
 async function execCommand() {
-    const req = await fetch("execute");
+    const req = await fetch("resources/execute");
     const data = await req.json();
     console.log(data);
 }
