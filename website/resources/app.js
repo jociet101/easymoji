@@ -1,4 +1,5 @@
 // https://www.youtube.com/watch?v=C3fNuqQeUdY
+// import { saveInputToFile } from './app2.js';
 
 window.onload = () => {
     const [input,output] = document.querySelectorAll(".codemirror-textarea");
@@ -10,23 +11,19 @@ window.onload = () => {
 
     run.addEventListener("click", () => {
         const codeToRun = editor.getValue();
-        try{
-            // saveInputToFile(codeToRun);
-            shell.replaceRange("=> "+eval(codeToRun)+"\n", CodeMirror.Pos(shell.lastLine()));
-        } catch(e){
-            shell.replaceRange("=> "+e+"\n", CodeMirror.Pos(shell.lastLine()));
-        }
+        shell.replaceRange("=> "+codeToRun+"\n", CodeMirror.Pos(shell.lastLine()));
+        test();
+        // try{
+        //     // saveInputToFile(codeToRun);
+        //     shell.replaceRange("=> "+eval(codeToRun)+"\n", CodeMirror.Pos(shell.lastLine()));
+        // } catch(e){
+        //     shell.replaceRange("=> "+e+"\n", CodeMirror.Pos(shell.lastLine()));
+        // }
     });
     clear.addEventListener("click", _ => shell.setValue(""));
 }
 
-function saveInputToFile(s) {
-    var fs = require("fs");
-    var stream;
-    stream = fs.createReadStream("D://data.txt");
-
-    stream.on("data", function(data) {
-    var chunk = data.toString();
-    console.log(chunk);
-}); 
+function test() {
+    var url = document.URL
+    url.searchParams.append('run', true);
 }
