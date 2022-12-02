@@ -40,7 +40,6 @@ and text_decl =
 [@@deriving show { with_path = false }]
 
 type python = [
-  (* | `List of python list *)
   | `Var of string * string
   | `Print of string
 ]
