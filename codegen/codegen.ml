@@ -82,11 +82,12 @@ and emoticon (e : string) : string =
   if e = "<3" then "❤️ " else
   if e = ":P" then "😛" else
   if e = ";)" then "😉" else
-  "💩"
+  e
 
 and header : python list =
   [`Var ("angry","😡");
    `Var ("meditate","🧘‍♂️");
    `Var ("party","🎉");
    `Var ("eyes","👀");
+   `Var ("poop","💩");
    ]
