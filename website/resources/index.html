@@ -4,22 +4,22 @@
   <title>Easymoji</title>
   
   <!-- CodeMirror -->
-  <script src="codemirror\codemirror-5.65.10/lib/codemirror.js"></script>
-  <link rel="stylesheet" href="codemirror\codemirror-5.65.10/lib/codemirror.css">
+  <!-- <script src="codemirror\codemirror-5.65.10/lib/codemirror.js"></script> -->
+  <!-- <link rel="stylesheet" href="codemirror\codemirror-5.65.10/lib/codemirror.css"> -->
   <!-- Can eventually change for the syntax to work with our own code -->
-  <script src="codemirror\codemirror-5.65.10/mode/javascript/javascript.js"></script>
+  <!-- <script src="codemirror\codemirror-5.65.10/mode/javascript/javascript.js"></script> -->
   
   <!-- Code Imports -->
   <!-- <script type="module" src="resources/app2.js"></script> -->
-  <script type="text/javascript" src="resources/app.js"></script>
+  <!-- <script type="text/javascript" src="app.js"></script> -->
 
-  <script type="module" src="resources/execute.js"></script>
+  <!-- <script type="module" src="resources/execute.js"></script> -->
 
 
 
 
   <!-- CSS -->
-  <link rel="stylesheet" href="resources/index.css">
+  <link rel="stylesheet" href="public/index.css">
 
   <!-- Logo Icon -->
   <link rel="icon" href="logo.jpg" type="image/icon type">
@@ -38,7 +38,7 @@
             <div class="code-area-header">
                 <h1>Editor</h1>
                 <button>Run</button>
-                <button id="my_button">Click me</button>
+                <button id="my_button" onclick="myButtonFunction()">Click me</button>
             </div>
             <textarea class ="codemirror-textarea"></textarea>
         </div>
@@ -53,14 +53,20 @@
     </div>
 </body>
 <script>
-    // async function myFunctionName() {
+    // function myFunctionName() {
     //     const req = await fetch("/easymoji/website/resources/execute");
     //     const data = await req.json();
     //     console.log(data);
     // }
-    // import { myHandler } from './resources/execute'; 
-    document.getElementById("my_button").onclick = function() {
-       myHandler();
+    const myButtonFunction = async () => {
+        const response = await fetch('http://localhost:3000/hello');
+        const myJson = await response.text(); //extract JSON from the http response
+        
+        console.log(myJson)
     }
+    // import { myHandler } from './resources/execute'; 
+    // document.getElementById("my_button").onclick = function() {
+    //    myHandler();
+    // }
 </script>
 </html>
