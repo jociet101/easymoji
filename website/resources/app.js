@@ -1,11 +1,11 @@
 // https://www.youtube.com/watch?v=C3fNuqQeUdY
 // import { saveInputToFile } from './app2.js';
 
-async function execCommand() {
-    const req = await fetch("/easymoji/website/resources");
-    const data = await req.json();
-    console.log(data);
-}
+// async function execCommand() {
+//     const req = await fetch("/easymoji/website/resources");
+//     const data = await req.json();
+//     console.log(data);
+// }
 
 window.onload = () => {
     const [input,output] = document.querySelectorAll(".codemirror-textarea");
