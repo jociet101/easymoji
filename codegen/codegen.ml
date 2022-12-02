@@ -29,6 +29,13 @@ and process_emoticon emo msg =
     (if Char.equal c ']' then (rem,emo)
     else process_emoticon (emo ^ (String.make 1 c)) rem)
 
+and process_emoji emo msg =
+  match msg with
+  | [] -> failwith "should not occur"
+  | c::rem ->
+    (if Char.equal c ':' then (rem,emo)
+    else process_emoji (emo ^ (String.make 1 c)) rem)
+
 and process_string (msg : char list) : string =
   match msg with
   | [] -> ""
@@ -36,6 +43,9 @@ and process_string (msg : char list) : string =
     (if Char.equal c '[' then
      (let (rem',emojified) = process_emoticon "" rem in
       (emoticon emojified) ^ (process_string rem'))
+     else if Char.equal c ':' then
+     (let (rem',emojified) = process_emoji "" rem in
+      (emoji emojified) ^ (process_string rem'))
      else (String.make 1 c) ^ (process_string rem)
     )
 
@@ -50,8 +60,11 @@ and emoticon (e : string) : string =
   if e = ":D" then "😃" else
   if e = ":(" then "🙁" else
   if e = ":'(" then "😥" else
-  if e = "<3" then "❤️" else
-  if e = ":D" then "😃" else
+  if e = "<3" then "❤️ " else
   if e = ":P" then "😛" else
   if e = ";)" then "😉" else
-  "poo"
+  "💩"
+
+and emoji (e : string) : string =
+  if e = "angry" then "😠" else
+  "💩"
