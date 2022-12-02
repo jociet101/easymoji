@@ -38,7 +38,7 @@
             <div class="code-area-header">
                 <h1>Editor</h1>
                 <button>Run</button>
-                <button onclick="myHandler()">Click me</button>
+                <button id="my_button">Click me</button>
             </div>
             <textarea class ="codemirror-textarea"></textarea>
         </div>
@@ -53,10 +53,13 @@
     </div>
 </body>
 <script>
-    async function myFunctionName() {
-        const req = await fetch("/easymoji/website/resources/execute");
-        const data = await req.json();
-        console.log(data);
+    // async function myFunctionName() {
+    //     const req = await fetch("/easymoji/website/resources/execute");
+    //     const data = await req.json();
+    //     console.log(data);
+    // }
+    document.getElementById("btn").onclick = function() {
+       myHandler();
     }
 </script>
 </html>
