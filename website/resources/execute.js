@@ -8,9 +8,9 @@
 //     console.log(chunk);
 // }); 
 // }
-import { execSync } from 'child_process'; 
+// import { execSync } from 'child_process'; 
 
-export default function handler(req, res) {
+export default function myHandler(req, res) {
     const execSync = require('child_process').execSync;
      // replace ^ if using ES modules
 
@@ -22,3 +22,4 @@ export default function handler(req, res) {
 
     res.status(200).json(JSON.stringify(filtered))
 }
+window.myHandler = myHandler;
