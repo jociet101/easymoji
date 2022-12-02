@@ -10,7 +10,7 @@
 // }
 // import { execSync } from 'child_process'; 
 
-export default function myHandler(req, res) {
+function myHandler(req, res) {
     const execSync = require('child_process').execSync;
      // replace ^ if using ES modules
 
@@ -22,3 +22,4 @@ export default function myHandler(req, res) {
 
     res.status(200).json(JSON.stringify(filtered))
 }
+window.myHandler = myHandler;
