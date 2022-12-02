@@ -37,6 +37,8 @@ let parse_with_error lexbuf =
     fprintf stderr "%a: syntax error\n" print_position lexbuf;
     exit (-1)
 
+(* Parsing stuff *)
+(* 
 let () =
   let fname = (Sys.get_argv ()).(1) in
   let lexbuf = Lexing.from_string (In_channel.read_all fname) in
@@ -44,12 +46,12 @@ let () =
   let result = parse_with_error lexbuf in
   print_endline (Syntax.show_prog result)
 
-let () = print_endline ""
+let () = print_endline "" *)
 
 let string_of_python (pyth : Syntax.python) : string =
   match pyth with
   | `Var (name,value) -> name ^ " = \"" ^ value ^ "\""
-  | `Print str -> "print (\"" ^ str ^ "\")"
+  | `Print str -> "print(f\"" ^ str ^ "\")"
 
 let rec string_of_python_list (input : Syntax.python list) : string =
   match input with
