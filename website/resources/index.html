@@ -16,13 +16,11 @@
   <!-- <script type="module" src="resources/execute.js"></script> -->
 
 
-
-
   <!-- CSS -->
-  <link rel="stylesheet" href="public/index.css">
+  <link rel="stylesheet" href="./index.css">
 
   <!-- Logo Icon -->
-  <link rel="icon" href="logo.jpg" type="image/icon type">
+  <link rel="icon" href="../logo.jpg" type="image/icon type">
 
 </head>
 <body>
@@ -37,10 +35,9 @@
         <div class="code-area">
             <div class="code-area-header">
                 <h1>Editor</h1>
-                <button>Run</button>
-                <button id="my_button" onclick="myButtonFunction()">Click me</button>
+                <textarea name="user_in" id="user_in" href="" download="output.txt" class ="codemirror-textarea"></textarea>
+                <button id="run_button" onclick="myButtonFunction()">Run Code</button>
             </div>
-            <textarea class ="codemirror-textarea"></textarea>
         </div>
 
         <div class="code-area">
@@ -51,22 +48,28 @@
             <textarea class ="codemirror-textarea"></textarea>
         </div>
     </div>
+    <br><br><br>
+    <form action="http://localhost:3000/test" method="POST">
+        <textarea id="user_input" name="user_input"></textarea>
+        <button type="submit">Submit</button> 
+        <!-- onclick="myButtonFunction2()" -->
+    </form>
+    <!-- <iframe name="ignore" style="display:none;"></iframe> -->
 </body>
 <script>
-    // function myFunctionName() {
-    //     const req = await fetch("/easymoji/website/resources/execute");
-    //     const data = await req.json();
-    //     console.log(data);
-    // }
     const myButtonFunction = async () => {
+        // var data = document.getElementById("user_in");
+        // console.log(data.value);
+
         const response = await fetch('http://localhost:3000/hello');
         const myJson = await response.text(); //extract JSON from the http response
         
         console.log(myJson)
     }
-    // import { myHandler } from './resources/execute'; 
-    // document.getElementById("my_button").onclick = function() {
-    //    myHandler();
-    // }
+    const myButtonFunction2 = async () => {
+        const response = await fetch('http://localhost:3000/test');
+        const myJson = await response.text(); //extract JSON from the http response
+        console.log(myJson)
+    }
 </script>
 </html>
