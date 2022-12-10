@@ -2,25 +2,12 @@
 <html>
 <head>
   <title>Easymoji</title>
-  
-  <!-- CodeMirror -->
-  <!-- <script src="codemirror\codemirror-5.65.10/lib/codemirror.js"></script> -->
-  <!-- <link rel="stylesheet" href="codemirror\codemirror-5.65.10/lib/codemirror.css"> -->
-  <!-- Can eventually change for the syntax to work with our own code -->
-  <!-- <script src="codemirror\codemirror-5.65.10/mode/javascript/javascript.js"></script> -->
-  
-  <!-- Code Imports -->
-  <!-- <script type="module" src="resources/app2.js"></script> -->
-  <!-- <script type="text/javascript" src="app.js"></script> -->
-
-  <!-- <script type="module" src="resources/execute.js"></script> -->
-
 
   <!-- CSS -->
-  <link rel="stylesheet" href="./index.css">
+  <link rel="stylesheet" type="css" href="public/index.css">
 
   <!-- Logo Icon -->
-  <link rel="icon" href="../logo.jpg" type="image/icon type">
+  <link rel="icon" href="public/logo.jpg" type="image/icon type">
 
 </head>
 <body>
@@ -31,30 +18,12 @@
       <li>Instruction 2</li>
       <li>Instruction 3</li>
     </ul>
-    <div class="grid-container">
-        <div class="code-area">
-            <div class="code-area-header">
-                <h1>Editor</h1>
-                <textarea name="user_in" id="user_in" href="" download="output.txt" class ="codemirror-textarea"></textarea>
-                <button id="run_button" onclick="myButtonFunction()">Run Code</button>
-            </div>
-        </div>
-
-        <div class="code-area">
-            <div class="code-area-header">
-                <h1>Shell</h1>
-                <button>Clear</button>
-            </div>
-            <textarea class ="codemirror-textarea"></textarea>
-        </div>
-    </div>
-    <br><br><br>
     <form action="http://localhost:3000/test" method="POST">
-        <textarea id="user_input" name="user_input"></textarea>
-        <button type="submit">Submit</button> 
-        <!-- onclick="myButtonFunction2()" -->
+        <button type="submit">Submit</button> <br>
+        <textarea id="user_input" name="user_input" rows="50" cols="40"></textarea>
     </form>
-    <!-- <iframe name="ignore" style="display:none;"></iframe> -->
+    <br><br><br>
+    
 </body>
 <script>
     const myButtonFunction = async () => {
@@ -64,11 +33,6 @@
         const response = await fetch('http://localhost:3000/hello');
         const myJson = await response.text(); //extract JSON from the http response
         
-        console.log(myJson)
-    }
-    const myButtonFunction2 = async () => {
-        const response = await fetch('http://localhost:3000/test');
-        const myJson = await response.text(); //extract JSON from the http response
         console.log(myJson)
     }
 </script>
