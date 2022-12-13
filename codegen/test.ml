@@ -51,7 +51,8 @@ let () = print_endline "" *)
 let string_of_javascript (js : Syntax.javascript) : string =
   match js with
   | `Var (name,value) -> "const " ^ name ^ " = \"" ^ value ^ "\""
-  | `Log str -> "console.log(`" ^ str ^ "`)"
+  (* | `Log str -> "console.log(`" ^ str ^ "`)" *)
+  | `Log str -> "text = `" ^ str ^ "`\ntext"
 
 let rec string_of_js_list (input : Syntax.javascript list) : string =
   match input with
@@ -74,7 +75,7 @@ let () =
   let lexbuf = Lexing.from_string (In_channel.read_all fname) in
   Lexing.set_filename lexbuf fname ;
   let p = parse_with_error lexbuf in
-  print_string (string_of_js_list (Codegen.codegen p))
+  print_string ("let text = ``\n" ^ string_of_js_list (Codegen.codegen p))
 
 (* codegen into python *)
 (* let () =
