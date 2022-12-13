@@ -46,7 +46,7 @@ and get_spam_count emo msg =
 and create_spam emo n =
   match n with
   | 0 -> ""
-  | _ -> "{" ^ emo ^ "}" ^ (create_spam emo (n-1))
+  | _ -> "${" ^ emo ^ "}" ^ (create_spam emo (n-1))
 
 and process_spam msg =
   let (rem,num) = get_spam_count "" msg in
@@ -62,7 +62,7 @@ and process_string (msg : char list) : string =
       (emoticon emojified) ^ (process_string rem'))
      else if Char.equal c ':' then
       (let (rem',emojified) = process_macro "" rem in
-       "{" ^ emojified ^ "}" ^ (process_string rem'))
+       "${" ^ emojified ^ "}" ^ (process_string rem'))
      else if Char.equal c '#' then
       (let (rem',emojified) = process_spam rem in
       emojified ^ (process_string rem'))
