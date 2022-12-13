@@ -1,14 +1,14 @@
 open Syntax
 
-let rec codegen (p: prog) : javascript list =
+let rec codegen (p: prog) : python list =
   header @ (codegen_stmts p.body)
 
-and codegen_stmts (ss : stmt list) : javascript list =
+and codegen_stmts (ss : stmt list) : python list =
   match ss with
-  | s::xs -> (codegen_stmt s)::(`Log "")::(codegen_stmts xs)
+  | s::xs -> (codegen_stmt s)::(`Print "")::(codegen_stmts xs)
   | [] -> []
 
-and codegen_stmt (s : stmt) : javascript =
+and codegen_stmt (s : stmt) : python =
   match s with
   | MacroDecl md -> codegen_macrodecl md
   | TextDecl td -> codegen_textdecl td
@@ -72,7 +72,7 @@ and codegen_textdecl td =
   let Str str = td.words in
   let message = string_to_list str 0 in
   let output = process_string message in
-  `Log output
+  `Print output
 
 and emoticon (e : string) : string =
   if e = ":)" then "🙂" else
@@ -84,7 +84,7 @@ and emoticon (e : string) : string =
   if e = ";)" then "😉" else
   e
 
-and header : javascript list =
+and header : python list =
   [`Var ("angry","😡");
    `Var ("meditate","🧘‍♂️");
    `Var ("party","🎉");

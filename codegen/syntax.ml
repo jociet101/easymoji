@@ -44,3 +44,9 @@ type python = [
   | `Print of string
 ]
 [@@deriving show { with_path = false }]
+
+type javascript = [
+  | `Var of string * string
+  | `Log of string
+]
+[@@deriving show { with_path = false }]

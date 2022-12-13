@@ -48,16 +48,6 @@ let () =
 
 let () = print_endline "" *)
 
-let string_of_javascript (js : Syntax.javascript) : string =
-  match js with
-  | `Var (name,value) -> "const " ^ name ^ " = \"" ^ value ^ "\""
-  | `Log str -> "console.log(\"" ^ str ^ "\")"
-
-let rec string_of_js_list (input : Syntax.javascript list) : string =
-  match input with
-  | x::xs -> (string_of_javascript x) ^ "\n" ^ (string_of_js_list xs)
-  | [] -> ""
-
 let string_of_python (pyth : Syntax.python) : string =
   match pyth with
   | `Var (name,value) -> name ^ " = \"" ^ value ^ "\""
@@ -68,18 +58,9 @@ let rec string_of_python_list (input : Syntax.python list) : string =
   | x::xs -> (string_of_python x) ^ "\n" ^ (string_of_python_list xs)
   | [] -> ""
 
-(* codegen into javascript *)
 let () =
   let fname = (Sys.get_argv ()).(1) in
   let lexbuf = Lexing.from_string (In_channel.read_all fname) in
   Lexing.set_filename lexbuf fname ;
   let p = parse_with_error lexbuf in
-  print_string (string_of_js_list (Codegen.codegen p))
-
-(* codegen into python *)
-(* let () =
-  let fname = (Sys.get_argv ()).(1) in
-  let lexbuf = Lexing.from_string (In_channel.read_all fname) in
-  Lexing.set_filename lexbuf fname ;
-  let p = parse_with_error lexbuf in
-  print_string (string_of_python_list (Codegen.codegen p)) *)
+  print_string (string_of_python_list (Codegen.codegen p))
