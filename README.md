@@ -1,4 +1,8 @@
-# Moji: making texting with emojis easier
+# EasyMoji: making texting with emojis easier
+
+## How to run the website locally yoursself
+
+## Moji Language Specification
 
 ### Syntax
 All strings must be enclosed in double quotations, and each line must be ended with a semicolon.
