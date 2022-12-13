@@ -51,8 +51,8 @@ let () = print_endline "" *)
 let string_of_javascript (js : Syntax.javascript) : string =
   match js with
   | `Var (name,value) -> "const " ^ name ^ " = \"" ^ value ^ "\""
-  (* | `Log str -> "console.log(`" ^ str ^ "`)" *)
-  | `Log str -> "text = `" ^ str ^ "`\ntext"
+  | `Log str -> "console.log(`" ^ str ^ "`)"
+  (* | `Log str -> "text = `" ^ str ^ "`\ntext" *)
 
 let rec string_of_js_list (input : Syntax.javascript list) : string =
   match input with
