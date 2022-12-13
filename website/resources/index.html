@@ -4,10 +4,10 @@
   <title>Easymoji</title>
 
   <!-- CSS -->
-  <link rel="stylesheet" type="css" href="public/index.css">
+  <link rel="stylesheet" type="text/css" href="index.css" />
 
   <!-- Logo Icon -->
-  <link rel="icon" href="public/logo.jpg" type="image/icon type">
+  <link rel="icon" type="image/x-icon" href="logo.jpg" />
 
 </head>
 <body>
@@ -18,22 +18,40 @@
       <li>Instruction 2</li>
       <li>Instruction 3</li>
     </ul>
-    <form action="http://localhost:3000/test" method="POST">
-        <button type="submit">Submit</button> <br>
-        <textarea id="user_input" name="user_input" rows="50" cols="40"></textarea>
-    </form>
-    <br><br><br>
+    <br><br>
+    <button onclick="buttonFunc()">Test</button><br>
+    <textarea id="user_input" name="user_input" rows="30" cols="40"></textarea> <br><br>
+
+    <button>Clear</button><br>
+    <textarea id="output" name="output" rows="30" cols="40"></textarea>
+    
     
 </body>
 <script>
-    const myButtonFunction = async () => {
-        // var data = document.getElementById("user_in");
-        // console.log(data.value);
+    (()=>{
+        const console_log = window.console.log;
+        window.console.log = function(...args){
+            console_log(...args);
+            var textarea = document.getElementById('output');
+            if(!textarea) return;
+            args.forEach(arg=>textarea.value += `${arg}\n`);
+        }
+    })();
+    const buttonFunc = async () => {
+        var user_in = document.getElementById("user_input").value;
+        // console.log(user_in);
 
-        const response = await fetch('http://localhost:3000/hello');
-        const myJson = await response.text(); //extract JSON from the http response
+        const rawResponse = await fetch('http://localhost:3000/idk', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ "user_input": user_in })
+        });
+        const content = await rawResponse.json();
+        eval(content);
         
-        console.log(myJson)
     }
 </script>
 </html>
