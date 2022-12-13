@@ -7,36 +7,33 @@
   <link rel="stylesheet" type="text/css" href="index.css" />
 
   <!-- Logo Icon -->
-  <link rel="icon" type="image/x-icon" href="logo.jpg" />
+  <link rel="icon" type="image/x-icon" href="Moji.png" />
 
 </head>
 <body>
-    <h1>Easymoji</h1>
-    <p>We use emojis teehee</p>
-    <ul>
-      <li>Instruction 1</li>
-      <li>Instruction 2</li>
-      <li>Instruction 3</li>
-    </ul>
+    <h1 class="the-title">
+        <img src="Moji.png" style="width:60px;height:50px;">
+        Easymoji  
+    </h1> 
+    <a href="https://github.com/jociet101/easymoji/blob/main/README.md" target="_blank"><span class="question" style="float: right;">?</span></a>
     <br><br>
     <div class="grid-container">
         <div class = "code-area">
             <div class = "code-area-header-editor">
                 <h1>Editor</h1>
-                <button onclick="buttonFunc()">Test</button>
+                <button onclick="compile()">Compile</button>
             </div>
             <textarea id="user_input" class="code-box" name="user_input"></textarea>
         </div>
         <div class = "code-area">
             <div class = "code-area-header-shell">
                 <h1>Shell</h1>
-                <button>Clear</button>
-                <button>Copy</button>
+                <button onclick="clearCode()">Clear</button> &nbsp;
+                <button onclick="copyCode()">Copy</button>
             </div>
             <textarea id="output" class="code-box" name="output" ></textarea>
         </div>
     </div>
-    
 </body>
 <script>
     (()=>{
@@ -48,9 +45,9 @@
             args.forEach(arg=>textarea.value += `${arg}\n`);
         }
     })();
-    const buttonFunc = async () => {
+
+    const compile = async () => {
         var user_in = document.getElementById("user_input").value;
-        // console.log(user_in);
 
         const rawResponse = await fetch('http://localhost:3000/codegen', {
             method: 'POST',
@@ -62,7 +59,17 @@
         });
         const content = await rawResponse.json();
         eval(content);
-        
+    }
+
+    const clearCode = async () => {
+        var textarea = document.getElementById('output');
+        textarea.value = '';
+    }
+
+    const copyCode = async () => {
+        var textarea = document.getElementById("output");
+        textarea.select();
+        document.execCommand("copy");
     }
 </script>
 </html>
