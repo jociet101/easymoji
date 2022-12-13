@@ -19,12 +19,23 @@
       <li>Instruction 3</li>
     </ul>
     <br><br>
-    <button onclick="buttonFunc()">Test</button><br>
-    <textarea id="user_input" name="user_input" rows="30" cols="40"></textarea> <br><br>
-
-    <button>Clear</button><br>
-    <textarea id="output" name="output" rows="30" cols="40"></textarea>
-    
+    <div class="grid-container">
+        <div class = "code-area">
+            <div class = "code-area-header-editor">
+                <h1>Editor</h1>
+                <button onclick="buttonFunc()">Test</button>
+            </div>
+            <textarea id="user_input" class="code-box" name="user_input"></textarea>
+        </div>
+        <div class = "code-area">
+            <div class = "code-area-header-shell">
+                <h1>Shell</h1>
+                <button>Clear</button>
+                <button>Copy</button>
+            </div>
+            <textarea id="output" class="code-box" name="output" ></textarea>
+        </div>
+    </div>
     
 </body>
 <script>
@@ -41,7 +52,7 @@
         var user_in = document.getElementById("user_input").value;
         // console.log(user_in);
 
-        const rawResponse = await fetch('http://localhost:3000/idk', {
+        const rawResponse = await fetch('http://localhost:3000/codegen', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
