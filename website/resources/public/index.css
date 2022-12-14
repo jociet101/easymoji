@@ -76,3 +76,7 @@ button {
     text-align: center;
     font-size: 1.5em;
 }
+
+textarea {
+    font-size: 18px;
+}
