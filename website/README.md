@@ -1,6 +1,6 @@
-#Welcome to Easymoji!
+# Welcome to Easymoji!
 
-#How to use
+## How to use
 1. Download the entire repository
 2. Use your terminal to travel to the folder Easymoji/website/resources
 3. Write "node app.js" to start the local server
