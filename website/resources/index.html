@@ -58,7 +58,11 @@
             body: JSON.stringify({ "user_input": user_in })
         });
         const content = await rawResponse.json();
-        eval(content);
+        try{
+            eval(content);
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     const clearCode = async () => {
