@@ -15,6 +15,12 @@
         <img src="Moji.png" style="width:60px;height:50px;">
         Easymoji  
     </h1> 
+    <div style="float: right;">
+        <!-- onclick="return ValidateSelection();" -->
+        <label for="sound" size="30px">Sound</label>
+        <input type="checkbox" name="sound" id="sound" style="width:30px;height:30px;"> 
+    </div>
+    <br><br>
     <a href="https://github.com/jociet101/easymoji/blob/main/README.md" target="_blank"><span class="question" style="float: right;">?</span></a>
     <br><br>
     <div class="grid-container">
@@ -71,7 +77,6 @@
         try{
             eval(content);
         } catch (e) {
-            // console.log(`LENGTH: ${content.lastIndexOf("\n")}`)
             content = content.substring(0,content.length-1);
             if(content.lastIndexOf("\n")>0) {
                 console.log(content.substring(content.lastIndexOf("\n")+1, content.length));
