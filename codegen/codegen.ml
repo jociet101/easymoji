@@ -96,7 +96,6 @@ and header : javascript list =
    `Var ("kissy","😘");
    `Var ("party","🎉");
    `Var ("eyes","👀");
-   `Var ("poop","💩");
    `Var ("bee","🐝");
    `Var ("mouse","🐭");
    `Var ("turkey","🦃");

@@ -46,7 +46,15 @@
     </div>
 </body>
 <script>
-    console.log("poopoo");
+    (()=>{
+        const console_log = window.console.log;
+        window.console.log = function(...args){
+            console_log(...args);
+            var textarea = document.getElementById('output');
+            if(!textarea) return;
+            args.forEach(arg=>textarea.value += `${arg}\n`);
+        }
+    })();
 
     // Select the button element
     const button = document.querySelector('#compile-butt');
@@ -78,24 +86,13 @@
                 // Append the confetti element to the container element
                 container.appendChild(confetti);
                 
-                // Set a timeout to remove the confetti element after 500 milliseconds
+                // Set a timeout to remove the confetti element
                 setTimeout(() => {
                     container.removeChild(confetti);
                 }, 2000);
             }
         }
     });
-
-
-    (()=>{
-        const console_log = window.console.log;
-        window.console.log = function(...args){
-            console_log(...args);
-            var textarea = document.getElementById('output');
-            if(!textarea) return;
-            args.forEach(arg=>textarea.value += `${arg}\n`);
-        }
-    })();
 
     const compile = async () => {
         var sound = document.getElementById("sound").checked;

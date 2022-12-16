@@ -1,2 +1,7 @@
-=> "hello, i'm not feeling super well [:(] so i won't be able to make it tomorrow. :angry:";
-=> "pray for me #123 :meditate:";
+let bday = "🥳🎂🎉";
+// this is a comment: text for jasmine
+=> "Text goes here. It may consist of words or emoticons [:)], references to the macros, :bday:, or built in emojis such as :angry: or :eyes:!!! And #5 :meditate: lol";
+=> "And you can have multiple inputs at once! #3 :party:";
+=> "#8 :uwu:";
+
+=> "ALSKDJFALSKDJFLAKSJDFLKSAJ #90 :eggplant:";
