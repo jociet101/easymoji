@@ -58,7 +58,7 @@
     button.addEventListener('click', () => {
         var mochi = document.getElementById("mochi").checked;
         if (mochi) {
-            for (let i = 0; i < 1000; i++) {
+            for (let i = 0.15; i < 1; i += 0.2) {
                 // Create a new div element for each piece of confetti
                 let confetti = document.createElement('img');
                 confetti.src = "Moji.png";
@@ -68,7 +68,7 @@
                 
                 // Generate a random number between 0 and the width of the container element
                 // This will be used to set the initial position of the confetti
-                const xPos = 0.5 * container.offsetWidth - 100;
+                const xPos = i * container.offsetWidth - 100;
                 
                 // Set the initial position of the confetti using the generated xPos value
                 confetti.style.left = xPos + 'px';
