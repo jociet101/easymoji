@@ -26,13 +26,17 @@ app.post('/codegen', function(req, res) {
     exec("cp ./write_file.txt ../../codegen/user_input.txt; cd ..; cd ..; cd codegen; dune exec ./test.exe user_input.txt", (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);
+            res.write(JSON.stringify(error.message));
+            res.end();
             return;
         }
         if (stderr) {
             console.log(`stderr: ${stderr}`);
+            res.write(JSON.stringify(stderr));
+            res.end();
             return;
         }
-        res.write(JSON.stringify(stdout))
-        res.end()
+        res.write(JSON.stringify(stdout));
+        res.end();
     });
 });

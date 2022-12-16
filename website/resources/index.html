@@ -67,11 +67,17 @@
             },
             body: JSON.stringify({ "user_input": user_in })
         });
-        const content = await rawResponse.json();
+        var content = await rawResponse.json();
         try{
             eval(content);
         } catch (e) {
-            console.log(e)
+            // console.log(`LENGTH: ${content.lastIndexOf("\n")}`)
+            content = content.substring(0,content.length-1);
+            if(content.lastIndexOf("\n")>0) {
+                console.log(content.substring(content.lastIndexOf("\n")+1, content.length));
+            } else {
+                console.log(content);
+            }
         }
     }
 
