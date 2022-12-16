@@ -85,10 +85,24 @@ and emoticon (e : string) : string =
   e
 
 and header : javascript list =
-  [`Var ("angry","😡");
+  [`Var ("uwu","🥹");
+   `Var ("halo","😇");
+   `Var ("nerd","🤓");
+   `Var ("silly","😛");
+   `Var ("poop","💩");
+   `Var ("sus","🤨");
+   `Var ("angry","😡");
    `Var ("meditate","🧘‍♂️");
+   `Var ("kissy","😘");
    `Var ("party","🎉");
    `Var ("eyes","👀");
    `Var ("poop","💩");
    `Var ("bee","🐝");
+   `Var ("mouse","🐭");
+   `Var ("turkey","🦃");
+   `Var ("salute","🫡");
+   `Var ("melting","🫠");
+   `Var ("devil","👹");
+   `Var ("eggplant","🍆");
+   `Var ("peach","🍑");
    ]

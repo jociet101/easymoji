@@ -1,0 +1,2 @@
+=> "hello, i'm not feeling super well [:(] so i won't be able to make it tomorrow. :angry:";
+=> "pray for me #123 :meditate:";

@@ -1,4 +1,3 @@
-website/resources/public/*.mp3
 .DS_Store
 codegen/_build
 parsing/_build
