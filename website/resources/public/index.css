@@ -62,6 +62,11 @@ button {
     height:75%;
 }
 
+button:hover {
+    cursor: pointer;
+    background: rgb(193, 123, 239);
+}
+
 .question {
     display: block;
     height: 30px;
