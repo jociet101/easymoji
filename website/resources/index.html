@@ -22,6 +22,16 @@
             <div class = "code-area-header-editor">
                 <h1>Editor</h1>
                 <button onclick="compile()">Compile</button>
+                <script type="text/javascript">
+                    const audio = new Audio("compile.mp3");
+                    const buttons = document.querySelectorAll("button");
+                    
+                    buttons.forEach(button => {
+                      button.addEventListener("click", () => {
+                        audio.play();
+                      });
+                    });
+                </script>
             </div>
             <textarea id="user_input" class="code-box" name="user_input"></textarea>
         </div>
