@@ -14,9 +14,12 @@
     <h1 class="the-title">
         <img src="Moji.png" style="width:60px;height:50px;">
         Easymoji  
-    </h1> 
-    <input type="checkbox" id="sound" name="sound">
-    <label for="sound">Scales</label>
+    </h1>
+    <div style="float: right;">
+        <input type="checkbox" id="sound" name="sound">
+        <label for="sound">Sound</label>
+    </div>
+    <br><br>
     <a href="https://github.com/jociet101/easymoji/blob/main/README.md" target="_blank"><span class="question" style="float: right;">?</span></a>
     <br><br>
     <div class="grid-container">
@@ -50,11 +53,10 @@
 
     const compile = async () => {
         var sound = document.getElementById("sound").checked;
-        if (sound){
+        if (sound) {
             const audio = new Audio("compile.mp3");
             audio.play();
         }
-        
 
         var user_in = document.getElementById("user_input").value;
         
@@ -80,16 +82,22 @@
     }
 
     const clearCode = async () => {
-        const audio = new Audio("clear.mp3");
-        audio.play();
+        var sound = document.getElementById("sound").checked;
+        if (sound) {
+            const audio = new Audio("clear.mp3");
+            audio.play();
+        }
 
         var textarea = document.getElementById('output');
         textarea.value = '';
     }
 
     const copyCode = async () => {
-        const audio = new Audio("okaygood.mp3");
-        audio.play();
+        var sound = document.getElementById("sound").checked;
+        if (sound) {
+            const audio = new Audio("copy.mp3");
+            audio.play();
+        }
 
         var textarea = document.getElementById("output");
         textarea.select();
