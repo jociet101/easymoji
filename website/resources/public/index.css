@@ -85,3 +85,26 @@ button:hover {
 textarea {
     font-size: 18px;
 }
+
+.confetti {
+    /* Set the initial position of the confetti */
+    position: absolute;
+    top: 0;
+    
+    /* Add some animation to the confetti */
+    animation: fall 2000ms linear;
+  
+    /* Set the background color of the confetti */
+    background-color: #ffffff00;
+  }
+  
+  @keyframes fall {
+    /* Set the starting position of the confetti */
+    0% {
+      top: 0;
+    }
+    /* Set the ending position of the confetti */
+    100% {
+      top: 100%;
+    }
+  }

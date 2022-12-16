@@ -17,7 +17,12 @@
     </h1>
     <div style="float: right;">
         <input type="checkbox" id="sound" name="sound">
-        <label for="sound">Mystery Feature</label>
+        <label for="sound">Mystery Feature 1</label>
+    </div>
+    <br><br>
+    <div style="float: right;">
+        <input type="checkbox" id="mochi" name="mochi">
+        <label for="mochi">Mystery Feature 2</label>
     </div>
     <br><br>
     <a href="https://github.com/jociet101/easymoji/blob/main/README.md" target="_blank"><span class="question" style="float: right;">?</span></a>
@@ -26,7 +31,7 @@
         <div class = "code-area">
             <div class = "code-area-header-editor">
                 <h1>Editor</h1>
-                <button onclick="compile()">Compile</button>
+                <button id="compile-butt" onclick="compile()">Compile</button>
             </div>
             <textarea id="user_input" class="code-box" name="user_input"></textarea>
         </div>
@@ -41,6 +46,47 @@
     </div>
 </body>
 <script>
+    console.log("poopoo");
+
+    // Select the button element
+    const button = document.querySelector('#compile-butt');
+
+    // Select the container element where the confetti will be sprayed
+    const container = document.querySelector('.grid-container');
+
+    // Set up an event listener on the button to listen for clicks
+    button.addEventListener('click', () => {
+        var mochi = document.getElementById("mochi").checked;
+        if (mochi) {
+            for (let i = 0; i < 1000; i++) {
+                // Create a new div element for each piece of confetti
+                let confetti = document.createElement('img');
+                confetti.src = "Moji.png";
+                
+                // Add a class to the confetti element so we can style it with CSS
+                confetti.classList.add('confetti');
+                
+                // Generate a random number between 0 and the width of the container element
+                // This will be used to set the initial position of the confetti
+                const xPos = 0.5 * container.offsetWidth - 100;
+                
+                // Set the initial position of the confetti using the generated xPos value
+                confetti.style.left = xPos + 'px';
+                confetti.style.width = '200px';
+                confetti.style.height = '180px';
+                
+                // Append the confetti element to the container element
+                container.appendChild(confetti);
+                
+                // Set a timeout to remove the confetti element after 500 milliseconds
+                setTimeout(() => {
+                    container.removeChild(confetti);
+                }, 2000);
+            }
+        }
+    });
+
+
     (()=>{
         const console_log = window.console.log;
         window.console.log = function(...args){
