@@ -1,0 +1,4 @@
+let bday = "bleep ";
+=> ":bday:alkdsjfhlaskdfnlkdjasflkjasdkjfas #10000 :meditate:";
+
+
