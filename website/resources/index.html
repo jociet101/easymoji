@@ -15,12 +15,6 @@
         <img src="Moji.png" style="width:60px;height:50px;">
         Easymoji  
     </h1> 
-    <div style="float: right;">
-        <!-- onclick="return ValidateSelection();" -->
-        <label for="sound" size="30px">Sound</label>
-        <input type="checkbox" name="sound" id="sound" style="width:30px;height:30px;"> 
-    </div>
-    <br><br>
     <a href="https://github.com/jociet101/easymoji/blob/main/README.md" target="_blank"><span class="question" style="float: right;">?</span></a>
     <br><br>
     <div class="grid-container">
@@ -28,16 +22,6 @@
             <div class = "code-area-header-editor">
                 <h1>Editor</h1>
                 <button onclick="compile()">Compile</button>
-                <script type="text/javascript">
-                    const audio = new Audio("compile.mp3");
-                    const buttons = document.querySelectorAll("button");
-                    
-                    buttons.forEach(button => {
-                      button.addEventListener("click", () => {
-                        audio.play();
-                      });
-                    });
-                </script>
             </div>
             <textarea id="user_input" class="code-box" name="user_input"></textarea>
         </div>
@@ -63,6 +47,9 @@
     })();
 
     const compile = async () => {
+        const audio = new Audio("compile.mp3");
+        audio.play();
+
         var user_in = document.getElementById("user_input").value;
 
         const rawResponse = await fetch('http://localhost:3000/codegen', {
@@ -87,11 +74,17 @@
     }
 
     const clearCode = async () => {
+        const audio = new Audio("clear.mp3");
+        audio.play();
+
         var textarea = document.getElementById('output');
         textarea.value = '';
     }
 
     const copyCode = async () => {
+        const audio = new Audio("okaygood.mp3");
+        audio.play();
+
         var textarea = document.getElementById("output");
         textarea.select();
         document.execCommand("copy");
