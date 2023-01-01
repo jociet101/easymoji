@@ -2,6 +2,17 @@
 
 Welcome to Easymoji!
 
+## Table of Contents
+1. [About](#About)
+2. [Demo](#Demo)
+3. [Moji Language Specification](#Moji-Language-Specification)
+
+## About
+
+Easymoji was made by [Jocelyn Tseng](https://jociet101.github.io/) and [Maxine Lui](https://maxine-lui.github.io/fun/) as the final project for the class Programming Language Pragmatics (17-363 at CMU) that took we took in our fall 2022 semester. We designed the programming language, Moji, built a compiler for it, and created the web app Easymoji that puts it all together!
+
+Moji's compiler, consisting of a lexer, parser, and code generator, mirrors the structure of the micro-Typescript compiler we built over the course of the semester. The lexer turns Moji code into tokens, the parser turns tokens into an abstract syntax tree representation of the code, and the code generator turns the AST into Javascript code.
+
 ## How to use
 
 1. Clone this github repository
@@ -11,6 +22,8 @@ Welcome to Easymoji!
 5. Write easymoji code in the editor (see the Moji specification below!)
 6. Press compile
 7. Copy the output of your desired text!
+
+## Demo
 
 ## Moji Language Specification
 
