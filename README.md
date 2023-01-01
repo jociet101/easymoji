@@ -1,7 +1,5 @@
 # EasyMoji: making texting with emojis easier
 
-Welcome to Easymoji!
-
 ## Table of Contents
 1. [About](#About)
 2. [Demo](#Demo)
@@ -24,6 +22,12 @@ Moji's compiler, consisting of a lexer, parser, and code generator, mirrors the 
 7. Copy the output of your desired text!
 
 ## Demo
+
+
+
+https://user-images.githubusercontent.com/73032138/210167711-eaaa6919-4106-41e5-b164-0e79babd7fbd.mov
+
+
 
 ## Moji Language Specification
 
