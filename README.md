@@ -7,9 +7,11 @@
 
 ## About
 
-Easymoji was made by [Jocelyn Tseng](https://jociet101.github.io/) and [Maxine Lui](https://maxine-lui.github.io/fun/) as the final project for the class Programming Language Pragmatics (17-363 at CMU) that took we took in our fall 2022 semester. We designed the programming language, Moji, built a compiler for it, and created the web app Easymoji that puts it all together!
+Easymoji was made by [Jocelyn Tseng](https://jociet101.github.io/) and [Maxine Lui](https://maxine-lui.github.io/fun/) as the final project for the class Programming Language Pragmatics (17-363 at CMU) that took we took in our fall 2022 semester. We designed the programming language, Moji, built a compiler for it in OCaml, and created the web app Easymoji in Javascript and HTML + CSS that puts it all together!
 
 Moji's compiler, consisting of a lexer, parser, and code generator, mirrors the structure of the micro-Typescript compiler we built over the course of the semester. The lexer turns Moji code into tokens, the parser turns tokens into an abstract syntax tree representation of the code, and the code generator turns the AST into Javascript code.
+
+We chose to generate Javascript code because it can easily be run in the backend of the Easymoji website. After the dune compiler is run on the compiler, the code generated Javascript can be natively run in the website's JS code. Then the console output is replicated onto the frontend of the website to be displayed to the user!
 
 ## How to use
 
